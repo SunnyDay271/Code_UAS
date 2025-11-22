@@ -81,27 +81,49 @@ Akses frontend di browser. Pastikan backend aktif untuk API calls.
 **Struktur Proyek**
 
 Code_UAS/
+
 ├── frontend/
+
 │   ├── public/                 # File statis (mis. gambar avatar)
+
 │   ├── src/
+
 │   │   ├── api.js             # Fungsi API untuk CRUD item
+
 │   │   ├── components/        # Komponen reusable (ItemForm, ItemTable)
+
 │   │   ├── context/
+
 │   │   │   └── cartContext.jsx # Context keranjang
+
 │   │   ├── pages/             # Halaman (Home, Trade, Store, dll.)
+
 │   │   ├── App.jsx            # Routing utama
+
 │   │   └── main.jsx           # Entry point React
+
 │   ├── package.json           # Dependensi frontend
+
 │   └── vite.config.js         # Konfigurasi Vite
+
 ├── backend/
+
 │   ├── .env                   # Environment variables
+
 │   ├── index.js               # Entry point server Express
+
 │   ├── config/
+
 │   │   └── db.js              # Konfigurasi database MySQL
+
 │   ├── routes/
+
 │   │   ├── auth.js            # Router autentikasi
+
 │   │   └── items.js           # Router CRUD item
+
 │   └── package.json           # Dependensi backend
+
 └── README.md                  # File ini
 
 **API Endpoints (Backend)**
