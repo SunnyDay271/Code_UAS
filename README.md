@@ -1,4 +1,5 @@
 **Deskripsi**
+
 GameHeaven adalah platform lengkap untuk trading item game, terdiri dari frontend React dan backend Express.js dengan MySQL.
 - Frontend memungkinkan pengguna untuk mendaftar, login, mengelola item trade, menjelajahi toko, dan mengelola keranjang.
 - Backend menangani API untuk autentikasi dan CRUD item game.
