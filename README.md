@@ -79,6 +79,7 @@ DB_NAME=game_trade
 Akses frontend di browser. Pastikan backend aktif untuk API calls.
 
 **Struktur Proyek**
+
 Code_UAS/
 ├── frontend/
 │   ├── public/                 # File statis (mis. gambar avatar)
