@@ -31,3 +31,8 @@ export async function deleteItem(id) {
   if (!res.ok) throw new Error("Gagal menghapus item");
   return res.json();
 }
+
+// 🔥 Tambahan: khusus untuk update quantity item
+export async function updateItemQuantity(id, newQuantity) {
+  return updateItem(id, { quantity: newQuantity });
+}
