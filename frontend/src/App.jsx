@@ -1,6 +1,6 @@
 // src/App.jsx
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
-import { CartProvider, useCart } from "./context/cartContext";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { CartProvider } from "./context/cartContext";
 import { useState, useEffect } from "react";
 
 // Pages
@@ -13,64 +13,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 
 // Navbar
-function Navbar() {
-  const { cart } = useCart();
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-  const [profile, setProfile] = useState(null);
-
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn");
-    if (loggedIn) {
-      setProfile({
-        id: localStorage.getItem("userId"),
-        name: localStorage.getItem("userName"),
-        email: localStorage.getItem("userEmail"),
-        avatar: localStorage.getItem("userAvatar") || "/default-avatar.png",
-      });
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userEmail");
-    localStorage.removeItem("userAvatar");
-    setProfile(null);
-  };
-
-  return (
-    <nav className="bg-blue-600 text-white p-4 shadow">
-      <div className="max-w-5xl mx-auto flex justify-between items-center">
-        <div className="flex gap-6">
-          <Link to="/" className="hover:underline">Home</Link>
-          <Link to="/trade" className="hover:underline">Trade Item</Link>
-          <Link to="/store" className="hover:underline">Store</Link>
-        </div>
-
-        <div className="flex items-center gap-6">
-          <Link to="/cart" className="hover:underline">Keranjang ({totalItems})</Link>
-
-          {profile ? (
-            <div className="flex items-center gap-2">
-              <Link to="/profile" className="hover:underline flex items-center gap-2">
-                <img src={profile.avatar} alt="Avatar" className="w-7 h-7 rounded-full border" />
-                <span>{profile.name}</span>
-              </Link>
-              <button onClick={handleLogout} className="bg-red-500 px-2 py-1 rounded hover:bg-red-600">Logout</button>
-            </div>
-          ) : (
-            <>
-              <Link to="/login" className="hover:underline">Login</Link>
-              <Link to="/register" className="hover:underline">Register</Link>
-            </>
-          )}
-        </div>
-      </div>
-    </nav>
-  );
-}
+import Navbar from "./components/navbar";
 
 // Protected route
 function PrivateRoute({ children }) {
@@ -79,11 +22,29 @@ function PrivateRoute({ children }) {
 }
 
 export default function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Load preferensi dari localStorage saat mount
+  useEffect(() => {
+    const savedDark = localStorage.getItem("darkMode") === "true";
+    setDarkMode(savedDark);
+  }, []);
+
+  // Toggle dan simpan ke localStorage
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => {
+      localStorage.setItem("darkMode", !prev);
+      return !prev;
+    });
+  };
+
   return (
     <CartProvider>
       <Router>
-        <div className="min-h-screen bg-gray-50">
-          <Navbar />
+        {/* Wrapper div untuk seluruh halaman */}
+        <div className={`${darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-black"} min-h-screen transition-colors duration-300`}>
+          {/* Kirim props darkMode & toggleDarkMode ke Navbar */}
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
           <Routes>
             {/* Public */}
