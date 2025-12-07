@@ -1,9 +1,21 @@
 **Deskripsi**
 
-GameHeaven adalah platform lengkap untuk trading item game, terdiri dari frontend React dan backend Express.js dengan MySQL.
-- Frontend memungkinkan pengguna untuk mendaftar, login, mengelola item trade, menjelajahi toko, dan mengelola keranjang.
-- Backend menangani API untuk autentikasi dan CRUD item game.
+🎮 GameHeaven
 
+Platform lengkap untuk trading item game dengan frontend React dan backend Express.js menggunakan MySQL. GameHeaven memungkinkan pengguna menjelajahi, membeli, dan menjual item game dengan mudah dan aman.
+
+✨ Fitur Utama
+| Fitur                    | Deskripsi                                                                                                  |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| **Autentikasi Pengguna** | Registrasi, login, dan profil pengguna. Data disimpan di `localStorage` (frontend) dan database (backend). |
+| **Manajemen Item Trade** | Tambah, edit, hapus item game (CRUD) di halaman Trade.                                                     |
+| **Toko (Store)**         | Jelajahi item game dengan pencarian dan filter berdasarkan nama, game, dan harga.                          |
+| **Keranjang Belanja**    | Tambahkan item, lihat total, dan simulasi pembelian.                                                       |
+| **Notifikasi**           | SweetAlert2 untuk konfirmasi dan toast.                                                                    |
+| **Responsive Design**    | UI responsif dengan Tailwind CSS.                                                                          |
+| **API Backend**          | Endpoint untuk autentikasi dan item game dengan error handling.                                            |
+
+**CORS – Cross-origin requests**
 **Fitur Utama**
 - Autentikasi Pengguna: Registrasi, login, dan profil dengan penyimpanan di localStorage (frontend) dan database (backend).
 - Manajemen Item Trade: Tambah, edit, hapus item game (CRUD) di halaman Trade.
@@ -13,26 +25,30 @@ GameHeaven adalah platform lengkap untuk trading item game, terdiri dari fronten
 - Responsive Design: UI responsif dengan Tailwind CSS.
 - API Backend: Endpoint untuk autentikasi dan item game dengan error handling.
 
-**Teknologi yang Digunakan:**
-- Frontend
-React: Library utama untuk UI.
-Vite: Build tool dan dev server.
-React Router DOM: Routing antar halaman.
-Axios: HTTP requests ke backend.
-SweetAlert2: Dialog dan notifikasi.
-Tailwind CSS: Styling.
-Context API: Manajemen state keranjang.
 
-- Backend
-Express.js: Framework web untuk Node.js.
-MySQL2: Driver koneksi database MySQL.
-dotenv: Environment variables.
-CORS: Cross-origin requests.
+🛠️ Teknologi yang Digunakan
 
-- Prasyarat
-Node.js (versi 16+).
-MySQL Server (mis. XAMPP atau MySQL Workbench).
-Database MySQL bernama game_trade.
+**-Frontend**
+
+- React – Library utama untuk UI
+- Vite – Build tool & dev server
+- React Router DOM – Routing halaman
+- Axios – HTTP requests ke backend
+- SweetAlert2 – Dialog & notifikasi
+- Tailwind CSS – Styling modern
+- Context API – Manajemen state keranjang
+
+**-Backend**
+
+- Express.js – Framework web Node.js
+- MySQL2 – Driver koneksi database MySQL
+- dotenv – Environment variables
+
+**⚡ Prasyarat**
+
+- Node.js ≥ 16
+- MySQL Server (XAMPP, MySQL Workbench, dll)
+- Database MySQL bernama game_trade
 
 - Setup Database
 Buat database MySQL bernama game_trade.
