@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { getItems, createItem, updateItem, deleteItem } from "../api";  // Ensure api.js exists in src/
-import ItemForm from "../components/itemForm";  // Path should be correct if components/ is in src/
+import { getItems, createItem, updateItem, deleteItem } from "../api";
+import ItemForm from "../components/itemForm";
 import ItemTable from "../components/ItemTable";
 
-/**
- * Halaman Trade Item: Manajemen CRUD untuk item game.
- */
-export default function TradePage() {
+export default function TradePage({ darkMode = false }) {  // tambah props darkMode, default false
   const [items, setItems] = useState([]);
   const [editing, setEditing] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -90,10 +87,10 @@ export default function TradePage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-6 space-y-6">
+    <div className={`max-w-5xl mx-auto p-6 space-y-6 ${darkMode ? "bg-gray-900 text-white" : ""}`}>
       <header className="space-y-1">
         <h1 className="text-2xl font-bold">Manajemen Item Game — Trade</h1>
-        <p className="text-sm text-gray-600">
+        <p className={darkMode ? "text-gray-300 text-sm" : "text-sm text-gray-600"}>
           Tempat dimana kamu bisa: tambah, lihat, edit, hapus data item game (tidak disarankan karna akan menghapus item orang lain).
         </p>
       </header>
@@ -102,25 +99,29 @@ export default function TradePage() {
         editingItem={editing}
         onCancelEdit={() => setEditing(null)}
         onSubmit={handleCreate}
+        darkMode={darkMode} // jangan lupa juga kalau ItemForm butuh darkMode
       />
 
       <div className="flex items-center justify-between">
         <h2 className="font-semibold">Daftar Item Game</h2>
         <button
           onClick={load}
-          className="px-3 py-1 rounded bg-gray-800 text-white"
+          className={`px-3 py-1 rounded ${darkMode ? "bg-gray-700 text-white" : "bg-gray-800 text-white"}`}
         >
           Refresh
         </button>
       </div>
 
       {loading ? (
-        <div className="text-sm">Memuat...</div>
+        <div className={darkMode ? "text-gray-300 text-sm" : "text-sm"}>
+          Memuat...
+        </div>
       ) : (
         <ItemTable
           data={items}
           onEdit={setEditing}
           onDelete={handleDelete}
+          darkMode={darkMode} // jika ItemTable perlu darkMode juga
         />
       )}
     </div>
